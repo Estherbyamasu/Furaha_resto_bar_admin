@@ -28,3 +28,10 @@ Route::post('fournisseurs','FournisseursController@store');
 Route::get('fournisseurs/edit/{fournisseur}','FournisseursController@edit');
 Route::put('fournisseurs/{fournisseur}','FournisseursController@update');
 Route::post('fournisseurs/destroy/{fournisseur}','FournisseursController@destroy');
+
+Route::get('achats','AchatsController@index');
+Route::get('achats/create','AchatsController@create');
+Route::post('achats','AchatsController@store');
+Route::get('achats/edit/{achat}','AchatsController@edit');
+Route::put('achats/{achat}','AchatsController@update');
+Route::post('achats/destroy/{achat}','AchatsController@destroy');
