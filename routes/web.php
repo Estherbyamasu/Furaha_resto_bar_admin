@@ -22,6 +22,7 @@ Route::get('/', 'HomeController@index');
 Route::get('/', 'HomeController@index')->name('home');
 Route::resource('/Admin/users','Admin/UsersController');
 
+// Fournisseurs
 Route::get('fournisseurs','FournisseursController@index');
 Route::get('fournisseurs/create','FournisseursController@create');
 Route::post('fournisseurs','FournisseursController@store');
@@ -29,6 +30,7 @@ Route::get('fournisseurs/edit/{fournisseur}','FournisseursController@edit');
 Route::put('fournisseurs/{fournisseur}','FournisseursController@update');
 Route::post('fournisseurs/destroy/{fournisseur}','FournisseursController@destroy');
 
+// Achats
 Route::get('achats','AchatsController@index');
 Route::get('achats/create','AchatsController@create');
 Route::post('achats','AchatsController@store');
