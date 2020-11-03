@@ -23,6 +23,7 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::resource('/Admin/users','Admin/UsersController');
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 Route::get('caissiers','CaissiersController@index');
 Route::get('caissiers/create','CaissiersController@create');
 Route::post('caissiers','CaissiersController@store');
@@ -38,3 +39,11 @@ Route::get('clients/edit/{client}','ClientsController@edit');
 Route::put('clients/{client}','ClientsController@update');
 Route::post('clients/destroy/{client}','ClientsController@destroy');
 >>>>>>> clients
+=======
+Route::get('serveurs','ServeursController@index');
+Route::get('serveurs/create','ServeursController@create');
+Route::post('serveurs','ServeursController@store');
+Route::get('serveurs/edit/{serveur}','ServeursController@edit');
+Route::put('serveurs/{serveur}','ServeursController@update');
+Route::post('serveurs/destroy/{serveur}','ServeursController@destroy');
+>>>>>>> serveurs
