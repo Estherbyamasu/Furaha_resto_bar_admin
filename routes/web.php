@@ -22,9 +22,8 @@ Route::get('/', 'HomeController@index');
 Route::get('/', 'HomeController@index')->name('home');
 Route::resource('/Admin/users','Admin/UsersController');
 
-<<<<<<< HEAD
-// Categories
-=======
+
+
 
 Route::get('caissiers','CaissiersController@index');
 Route::get('caissiers/create','CaissiersController@create');
@@ -57,7 +56,7 @@ Route::put('factures/{facture}','FacturesController@update');
 Route::post('factures/destroy/{facture}','FacturesController@destroy');
 Route::post('search','FacturesController@search');
 
->>>>>>> detaillefactures
+
 Route::get('categories','CategoriesController@index');
 Route::get('categories/create','CategoriesController@create');
 Route::post('categories','CategoriesController@store');
@@ -69,7 +68,7 @@ Route::put('categories/{category}','CategoriesController@update');
 
 Route::post('categories/destroy/{category}','CategoriesController@destroy');
 
-// Products
+
 Route::get('products','ProductsController@index');
 Route::get('products/create','ProductsController@create');
 Route::post('products','ProductsController@store');
@@ -78,10 +77,10 @@ Route::put('products/{product}','ProductsController@update');
 Route::post('products/destroy/{product}','ProductsController@destroy');
 Route::post('search','ProductsController@search');
 Route::get('products/show/{product}','ProductsController@show');
-<<<<<<< HEAD
+
 Route::get('products/show1/{product}','ProductsController@show1');
 
-// Details achats
+
 Route::get('detailleachats','DetailleachatsController@index');
 Route::get('detailleachats/create','DetailleachatsController@create');
 Route::post('detailleachats','DetailleachatsController@store');
@@ -89,7 +88,7 @@ Route::get('detailleachats/edit/{detailleachat}','DetailleachatsController@edit'
 Route::put('detailleachats/{detailleachat}','DetailleachatsController@update');
 Route::post('detailleachats/destroy/{detailleachat}','DetailleachatsController@destroy');
 
-// Fournisseurs
+
 Route::get('fournisseurs','FournisseursController@index');
 Route::get('fournisseurs/create','FournisseursController@create');
 Route::post('fournisseurs','FournisseursController@store');
@@ -104,7 +103,7 @@ Route::post('achats','AchatsController@store');
 Route::get('achats/edit/{achat}','AchatsController@edit');
 Route::put('achats/{achat}','AchatsController@update');
 Route::post('achats/destroy/{achat}','AchatsController@destroy');
-=======
+
 Route::get('products/show1/{product}','ProductsController@show1
 ');
 
@@ -116,4 +115,4 @@ Route::post('detaillefactures','DetaillefacturesController@store');
 Route::get('detaillefactures/edit/{detaillefacture}','DetaillefacturesController@edit');
 Route::put('detaillefactures/{detaillefacture}','DetaillefacturesController@update');
 Route::post('detaillefactures/destroy/{detaillefacture}','DetaillefacturesController@destroy');
->>>>>>> detaillefactures
+
