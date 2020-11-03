@@ -44,3 +44,10 @@ Route::post('search','ProductsController@search');
 Route::get('products/show/{product}','ProductsController@show');
 Route::get('products/show1/{product}','ProductsController@show1
 ');
+
+Route::get('detailleachats','DetailleachatsController@index');
+Route::get('detailleachats/create','DetailleachatsController@create');
+Route::post('detailleachats','DetailleachatsController@store');
+Route::get('detailleachats/edit/{detailleachat}','DetailleachatsController@edit');
+Route::put('detailleachats/{detailleachat}','DetailleachatsController@update');
+Route::post('detailleachats/destroy/{detailleachat}','DetailleachatsController@destroy');
