@@ -21,3 +21,11 @@ Auth::routes();
 Route::get('/', 'HomeController@index');
 Route::get('/', 'HomeController@index')->name('home');
 Route::resource('/Admin/users','Admin/UsersController');
+
+
+Route::get('clients','ClientsController@index');
+Route::get('clients/create','ClientsController@create');
+Route::post('clients','ClientsController@store');
+Route::get('clients/edit/{client}','ClientsController@edit');
+Route::put('clients/{client}','ClientsController@update');
+Route::post('clients/destroy/{client}','ClientsController@destroy');
