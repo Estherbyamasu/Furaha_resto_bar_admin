@@ -77,7 +77,7 @@
             <div class="modal-content">
       <!--Modal cascading tabs-->
       <div class="modal-body text-center mb-1">
-                        <table class="table table-bordered table-hover table-striped">
+                        <table  id="example1" class="table table-bordered table-hover table-striped">
                             <thead>
                                 <tr>
                                     <th>Id</th>
