@@ -13,7 +13,7 @@
 	<!--/.row-->
 	<div class="row">
 		<div class="col-lg-12">
-			<h1 class="page-header">Bienvenue dans le Resto-bar</h1>
+			<h1 class="page-header">Bienvenue dans Furaha-Resto-bar</h1>
 		</div>
 	</div>
 	
