@@ -79,7 +79,7 @@
             <form action="{{url('products')}}" method="POST">
                 @csrf
                <div class="row">
-               <div class="col-md-6">
+               
             <div class="form-group">
                      <label for="cat_name">Category name</label>
                     <select name="category_id" id="" class="form-control" 
