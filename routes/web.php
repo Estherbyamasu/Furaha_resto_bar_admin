@@ -20,4 +20,7 @@ Route::get('/', function () {
 Auth::routes();
 Route::get('/', 'HomeController@index');
 Route::get('/', 'HomeController@index')->name('home');
-Route::resource('/Admin/users','Admin/UsersController');
+
+Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:manage-users')->group(function(){
+    Route::resource('users','UsersController');
+});
