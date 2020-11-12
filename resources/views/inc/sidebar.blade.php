@@ -6,7 +6,20 @@
 			<img class="user__img" src="{{ asset('demo/img/profile-pics/8.jpg') }}" alt="">
 			<div class="profile-usertitle">
 				<div class="profile-usertitle-name">{{ Auth::user()->name }}</div>
-				<div class="profile-usertitle-status"><span class="indicator label-success"></span>Online</div>
+				<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+                                    @can('manage-users')
+                                    <a href="{{route('admin.users.index')}}" class="dropdown-item">Liste des utilisateurs</a>
+                                    @endcan
+                                </div>
 			</div>
 			<div class="clear"></div>
 		</div>
