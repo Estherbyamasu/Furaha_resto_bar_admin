@@ -1,4 +1,15 @@
 <div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
+<div class="profile-sidebar">
+			<div class="profile-userpic">
+				<img src="http://placehold.it/50/30a5ff/fff" class="img-responsive" alt="">
+			</div>
+			<img class="user__img" src="{{ asset('demo/img/profile-pics/8.jpg') }}" alt="">
+			<div class="profile-usertitle">
+				<div class="profile-usertitle-name">{{ Auth::user()->name }}</div>
+				<div class="profile-usertitle-status"><span class="indicator label-success"></span>Online</div>
+			</div>
+			<div class="clear"></div>
+		</div>
 	<ul class="nav menu">
 	<li class="active"><a href="{{ url('')}}"><em class="fa fa-dashboard">&nbsp;</em> Accueille</a></li>
 	<li class="parent "><a data-toggle="collapse" href="#sub-item-1">
