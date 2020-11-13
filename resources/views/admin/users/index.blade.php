@@ -1,7 +1,8 @@
-@extends('layouts.app')
+@extends('templates.default_layout')
 
 @section('content')
-<div class="container">
+<div class="col-lg-2"></div>
+<div class="col-lg-10">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
