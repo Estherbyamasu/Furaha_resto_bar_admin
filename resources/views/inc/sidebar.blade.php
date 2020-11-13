@@ -1,12 +1,16 @@
 <div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
-<div class="profile-sidebar">
+<div class="profile-sidebar dropdowns">
 			<div class="profile-userpic">
 				<img src="http://placehold.it/50/30a5ff/fff" class="img-responsive" alt="">
 			</div>
-			<img class="user__img" src="{{ asset('demo/img/profile-pics/8.jpg') }}" alt="">
-			<div class="profile-usertitle">
-				<div class="profile-usertitle-name">{{ Auth::user()->name }}</div>
-				<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+
+
+			<li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle page-header " href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                     <span class="caret color_siew">{{ Auth::user()->name }}</span>
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu-left  color_id" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -15,12 +19,35 @@
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
+									</form>
+									<br>
+                                    @can('manage-users')
+                                    <a href="{{route('admin.users.index')}}" class="dropdown-item">Liste des utilisateurs</a>
+                                    @endcan
+                                </div>
+                            </li>
+
+
+
+			<!-- <img class="user__img" src="{{ asset('demo/img/profile-pics/8.jpg') }}" alt="">
+			<div class="profile-usertitle">
+				<div class="profile-usertitle-name">{{ Auth::user()->name }}</div>
+				<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                   
+				<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
                                     </form>
                                     @can('manage-users')
                                     <a href="{{route('admin.users.index')}}" class="dropdown-item">Liste des utilisateurs</a>
                                     @endcan
                                 </div>
-			</div>
+			</div> -->
+
+
+
+			
+
+
 			<div class="clear"></div>
 		</div>
 	<ul class="nav menu">
