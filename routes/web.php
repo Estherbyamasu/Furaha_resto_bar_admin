@@ -13,13 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'Auth\LoginController@showLoginForm');
 
 Auth::routes();
 Route::get('/', 'HomeController@index');
 Route::get('/', 'HomeController@index')->name('home');
+
 Route::resource('/Admin/users','Admin/UsersController');
 
 
@@ -115,4 +114,10 @@ Route::post('detaillefactures','DetaillefacturesController@store');
 Route::get('detaillefactures/edit/{detaillefacture}','DetaillefacturesController@edit');
 Route::put('detaillefactures/{detaillefacture}','DetaillefacturesController@update');
 Route::post('detaillefactures/destroy/{detaillefacture}','DetaillefacturesController@destroy');
+
+
+
+Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:manage-users')->group(function(){
+    Route::resource('users','UsersController');
+});
 
