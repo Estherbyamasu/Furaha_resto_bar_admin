@@ -35,3 +35,15 @@ Route::get('categories/show/{category}','CategoriesController@show');
 Route::put('categories/{category}','CategoriesController@update');
 
 Route::post('categories/destroy/{category}','CategoriesController@destroy');
+
+
+Route::get('products','ProductsController@index');
+Route::get('products/create','ProductsController@create');
+Route::post('products','ProductsController@store');
+Route::get('products/edit/{product}','ProductsController@edit');
+Route::put('products/{product}','ProductsController@update');
+Route::post('products/destroy/{product}','ProductsController@destroy');
+Route::post('search','ProductsController@search');
+Route::get('products/show/{product}','ProductsController@show');
+Route::get('products/show1/{product}','ProductsController@show1
+');
