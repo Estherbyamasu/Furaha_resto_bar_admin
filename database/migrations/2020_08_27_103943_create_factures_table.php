@@ -16,7 +16,7 @@ class CreateFacturesTable extends Migration
         Schema::create('factures', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('client_id');
-            $table->unsignedBigInteger('caissier_id');
+            $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('serveur_id');
             $table->integer('montant');
             $table->datetime('date_facture');
@@ -27,9 +27,9 @@ class CreateFacturesTable extends Migration
                 ->on('clients')
                 ->onDelete('cascade');
 
-            $table->foreign('caissier_id')
+            $table->foreign('user_id')
                 ->references('id')
-                ->on('caissiers')
+                ->on('users')
                 ->onDelete('cascade'); 
             $table->foreign('serveur_id')
                 ->references('id')

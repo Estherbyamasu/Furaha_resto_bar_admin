@@ -23,17 +23,85 @@
         <div class="col-lg-12">
             <div class="panel panel-default">
             
-                <div class="panel-body">
-                    <div class="col-lg-12">
-                    <div class="row">
-        <div class="col-lg-12">
-        <div class="modal-dialog modal-lg" role="document">
-             <div class="modal-content">
+         
 
-      <ul class="nav nav-tabs md-tabs tabs-2 light-blue darken-3" role="tablist">
-            <h1 class="page-header">L'ajout des Factures</h1>
-        </ul>
-             <div class="panel panel-default">
+
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
+ Inserer un Nouveau facture
+</button>  
+            <form action="{{url('search')}}" method="POST">
+            @csrf
+             <div class="row pb-2">
+                <div class="col-md-4">
+                     <input type="datetime-local" class="form-control" name="date_debut" value="{{ old('date_debut') }}" placeholder="date_debut" > 
+                     @error('date_debut')
+                        <div class="alert alert-danger">{{$message}}</div>
+                        @enderror
+                </div>
+                <div class="col-md-4">
+                    <input type="datetime-local" class="form-control" name="date_fin" value="{{ old('date_fin') }}" placeholder="date_fin" >
+                    @error('date_fin')
+                        <div class="alert alert-danger">{{$message}}</div>
+                        @enderror
+                 </div>
+                 <div class="col-md-4">
+                    <input type="submit" class="btn btn-warning" value="Rechercher" placeholder="search" >
+                </div>
+             </div>
+            </form>
+          
+            <table class="table table-bordered table-hover table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Nom client</th>
+                        <th scope="col">Nom utilisateur</th>
+                        <th scope="col">Nom serveur</th>
+                        <th scope="col">Date facture</th>
+                        <th scope="col">Montant</th>
+                        <th scope="col">Options</th>
+                    </tr>
+                </thead>
+                <tbody>
+                @foreach($factures as $facture)
+                    <tr>
+                        <td>{{$facture->id}}</td>
+                        <td>{{$facture->nom_client}}</td>
+                        <td>{{$facture->name}}</td>
+                        <td>{{$facture->nom_serveur}}</td>
+                        <td>{{$facture->date_facture}}</td>
+                        <td>{{$facture->montant}}</td>
+                        <td>
+                            <a href="factures/edit/{{$facture->id}}" class="glyphicon glyphicon-edit    btn btn-primary">Edit</a>
+                            <form action="factures/destroy/{{$facture->id}}" method="POST">
+                            @csrf
+                                <button type="submit" onclick="return confirm('Voulez vs vraiment supprimer cet facture ?')" class="glyphicon glyphicon-delite glyphicon-trash  btn btn-danger">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!--/.row-->
+
+
+
+
+
+
+    <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="exampleModalLongTitle">L'ajout des serveurs</h2>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <div class="panel panel-default">
              <div class="panel-body">
                     <div class="col-md-8">
             
@@ -41,7 +109,7 @@
                 @csrf
                 
                 <div class="row"> 
-                <div class="col-lg-4"> 
+                <div class="col-lg-6"> 
                 <div class="form-group">
                     <label for="nom_client">Nom client</label>
                     <select name="client_id" id="" class="form-control" 
@@ -56,22 +124,8 @@
                     </select>
                 </div>
                 </div> 
-                <div class="col-lg-4"> 
-               <div class="form-group">
-               <label for="nom_caissier">Nom caissier</label>
-                    <select name="caissier_id" id="" class="form-control" 
-                    class="@error('montant') is-danger @enderror" required>
-                        <option value="">Select caissier</option>
-                        @foreach($caissiers as $caissier)
-                        <option value="{{$caissier->id}}">{{$caissier->nom_caissier}}</option>
-                        @endforeach
-                        @error('caissier_id')
-                    <div class="alert alert-danger">{{$message}}</div>
-                    @enderror
-                    </select>
-                </div>
-                </div> 
-                <div class="col-lg-4"> 
+               
+                <div class="col-lg-6"> 
                  <div class="form-group">
                  <label for="nom_serveur">Nom serveur</label>
                     <select name="serveur_id" id="" class="form-control" 
@@ -87,6 +141,14 @@
                 </div>
                 </div> 
                 </div> 
+                <div class="form-group">
+            <label for="">Name user</label>
+                    <input type="text" name="name" id="name" class="form-control" value="{{ Auth::user()->name }}"
+                    class="@error('name') is-danger @enderror " placeholder="" aria-describedby="helpId" required>
+                    @error('name')
+                    <div class="alert alert-danger">{{$message}}</div>
+                    @enderror
+                </div>
             <div class="form-group">
             <label for="">Date facture</label>
                     <input type="datetime-local" name="date_facture" id="date_facture" 
@@ -119,65 +181,12 @@
             </div>
         </div>
         </div>
-        </div>
+      </div>
+      
     </div>
-    <div >
-            <form action="{{url('search')}}" method="POST">
-            @csrf
-             <div class="row pb-2">
-                <div class="col-md-4">
-                     <input type="datetime-local" class="form-control" name="date_debut" value="{{ old('date_debut') }}" placeholder="date_debut" > 
-                     @error('date_debut')
-                        <div class="alert alert-danger">{{$message}}</div>
-                        @enderror
-                </div>
-                <div class="col-md-4">
-                    <input type="datetime-local" class="form-control" name="date_fin" value="{{ old('date_fin') }}" placeholder="date_fin" >
-                    @error('date_fin')
-                        <div class="alert alert-danger">{{$message}}</div>
-                        @enderror
-                 </div>
-                 <div class="col-md-4">
-                    <input type="submit" class="btn btn-warning" value="Rechercher" placeholder="search" >
-                </div>
-             </div>
-            </form>
-                
-            <table class="table table-bordered table-hover table-striped">
-                <thead>
-                    <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">Nom client</th>
-                        <th scope="col">Nom caissier</th>
-                        <th scope="col">Nom serveur</th>
-                        <th scope="col">Date facture</th>
-                        <th scope="col">Montant</th>
-                        <th scope="col">Options</th>
-                    </tr>
-                </thead>
-                <tbody>
-                @foreach($factures as $facture)
-                    <tr>
-                        <td>{{$facture->id}}</td>
-                        <td>{{$facture->nom_client}}</td>
-                        <td>{{$facture->nom_caissier}}</td>
-                        <td>{{$facture->nom_serveur}}</td>
-                        <td>{{$facture->date_facture}}</td>
-                        <td>{{$facture->montant}}</td>
-                        <td>
-                            <a href="factures/edit/{{$facture->id}}" class="glyphicon glyphicon-edit    btn btn-primary">Edit</a>
-                            <form action="factures/destroy/{{$facture->id}}" method="POST">
-                            @csrf
-                                <button type="submit" onclick="return confirm('Voulez vs vraiment supprimer cet facture ?')" class="glyphicon glyphicon-delite glyphicon-trash  btn btn-danger">Delete</button>
-                            </form>
-                        </td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
-    </div>
-    <!--/.row-->
+  </div>
+</div>
+
 
 
     </div>
