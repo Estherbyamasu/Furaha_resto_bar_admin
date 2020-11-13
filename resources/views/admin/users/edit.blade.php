@@ -1,10 +1,15 @@
-@extends('layouts.app')
+@extends('templates.default_layout')
 
 @section('content')
-<div class="container">
+
+<div class="col-lg-4"></div>
+<div class="col-lg-8">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
+            <div class="modal-content">
+     
+     <div class="modal-body text-center mb-1">
                 <div class="card-header"><h2>Modifier les utilisateurs</h2></div>
 
                 
@@ -96,7 +101,8 @@
             </div>
             </div>
     </div> -->
-                 
+    </div>
+            </div>
                 </div>
             </div>
         </div>
