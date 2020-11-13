@@ -12,7 +12,7 @@ class CreateProductsTable extends Migration
      * @return void
      */
     public function up()
-    {
+    {  if(Schema::hasTable('products')){
         Schema::create('products', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('category_id');
@@ -26,6 +26,7 @@ class CreateProductsTable extends Migration
 
         });
     }
+}
 
     /**
      * Reverse the migrations.
