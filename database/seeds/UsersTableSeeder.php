@@ -34,9 +34,9 @@ class UsersTableSeeder extends Seeder
            
            $caissier =  User::firstOrCreate([
                'id'=>3,
-        'name'=>'Caissier',
-        'email'=>'caissier@gmail.com',
-        'password'=> Hash::make('password')
+                'name'=>'Caissier',
+                'email'=>'caissier@gmail.com',
+                'password'=> Hash::make('password')
         ]);
 
         $adminRole= Role::where('name','admin')->first();
