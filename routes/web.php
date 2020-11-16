@@ -21,12 +21,7 @@ Route::get('/', 'HomeController@index')->name('home');
 
 
 
-Route::get('caissiers','CaissiersController@index');
-Route::get('caissiers/create','CaissiersController@create');
-Route::post('caissiers','CaissiersController@store');
-Route::get('caissiers/edit/{caissier}','CaissiersController@edit');
-Route::put('caissiers/{caissier}','CaissiersController@update');
-Route::post('caissiers/destroy/{caissier}','CaissiersController@destroy');
+
 
 
 Route::get('clients','ClientsController@index');
