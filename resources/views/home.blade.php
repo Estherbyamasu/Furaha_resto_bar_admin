@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('templates.default_layout')
 
 @section('content')
 <div class="container">
@@ -14,7 +14,7 @@
                         </div>
                     @endif
 
-                    {{ __('You are logged in!') }}
+                    Bienvenue Furaha
                 </div>
             </div>
         </div>

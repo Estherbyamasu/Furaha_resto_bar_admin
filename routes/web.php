@@ -13,16 +13,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'Auth\LoginController@showLoginForm');
 
 Auth::routes();
 Route::get('/', 'HomeController@index');
 Route::get('/', 'HomeController@index')->name('home');
-Route::resource('/Admin/users','Admin/UsersController');
 
-// Categories
+
+Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:manage-users')->group(function(){
+    Route::resource('users','UsersController');
+});
+
 Route::get('categories','CategoriesController@index');
 Route::get('categories/create','CategoriesController@create');
 Route::post('categories','CategoriesController@store');
@@ -34,7 +35,6 @@ Route::put('categories/{category}','CategoriesController@update');
 
 Route::post('categories/destroy/{category}','CategoriesController@destroy');
 
-// Products
 Route::get('products','ProductsController@index');
 Route::get('products/create','ProductsController@create');
 Route::post('products','ProductsController@store');
@@ -43,6 +43,7 @@ Route::put('products/{product}','ProductsController@update');
 Route::post('products/destroy/{product}','ProductsController@destroy');
 Route::post('search','ProductsController@search');
 Route::get('products/show/{product}','ProductsController@show');
+
 Route::get('products/show1/{product}','ProductsController@show1');
 
 // Details achats
@@ -68,3 +69,4 @@ Route::post('achats','AchatsController@store');
 Route::get('achats/edit/{achat}','AchatsController@edit');
 Route::put('achats/{achat}','AchatsController@update');
 Route::post('achats/destroy/{achat}','AchatsController@destroy');
+
