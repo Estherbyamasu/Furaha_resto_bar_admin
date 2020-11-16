@@ -94,7 +94,7 @@
                     </select>
                 </div>
                 </div>
-                <div class="col-md-6">
+                
                
                <div class="form-group">
                    <label for="">Nom produit</label>
@@ -104,8 +104,7 @@
                     <div class="alert alert-danger">{{$message}}</div>
                     @enderror
                 </div>
-                </div>
-                </div>
+              
                        
                       
                    <div class="form-group">
@@ -117,15 +116,7 @@
                     @enderror
                 </div>
                 
-               
-            </form>
-       
-      
-        </div>
-        </div>
-        </div>
-      </div>
-      <div class="row">
+                <div class="row">
       <div class="modal-footer">
             <div class="text-center mb-3 col-md-6">
               <button type="submit" class=" glyphicon glyphicon-plus btn  btn-primary btn-block btn-rounded z-depth-1">Save</button>
@@ -135,6 +126,14 @@
               </div>
              </div>
              </div>
+            </form>
+       
+      
+        </div>
+        </div>
+        </div>
+      </div>
+     
     </div>
   </div>
 </div>
