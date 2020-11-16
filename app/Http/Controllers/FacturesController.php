@@ -56,7 +56,7 @@ class FacturesController extends Controller
         $request->validate([
             'client_id' => 'required',
             'serveur_id' => 'required',
-            'user_id' => 'required',
+            
             'montant' => 'required',
             'date_facture' => 'required'
         ]);
@@ -119,7 +119,7 @@ class FacturesController extends Controller
         $request->validate([
             'client_id' => 'required',
             'serveur_id' => 'required',
-            'user_id' => 'required',
+            
             'montant' => 'required',
             'date_facture' => 'required'
         ]);
