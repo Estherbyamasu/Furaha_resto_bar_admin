@@ -19,7 +19,9 @@ Auth::routes();
 Route::get('/', 'HomeController@index');
 Route::get('/', 'HomeController@index')->name('home');
 
+
 Route::resource('/Admin/users','Admin/UsersController');
+
 
 
 
@@ -30,6 +32,7 @@ Route::post('caissiers','CaissiersController@store');
 Route::get('caissiers/edit/{caissier}','CaissiersController@edit');
 Route::put('caissiers/{caissier}','CaissiersController@update');
 Route::post('caissiers/destroy/{caissier}','CaissiersController@destroy');
+
 
 
 Route::get('clients','ClientsController@index');
@@ -54,6 +57,19 @@ Route::get('factures/edit/{facture}','FacturesController@edit');
 Route::put('factures/{facture}','FacturesController@update');
 Route::post('factures/destroy/{facture}','FacturesController@destroy');
 Route::post('search','FacturesController@search');
+
+
+
+Route::get('factures/show','FacturesController@show');
+Route::get('factures/apercue/{facture}','FacturesController@apercue');
+
+
+
+Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:manage-users')->group(function(){
+    Route::resource('users','UsersController');
+});
+
+
 
 
 Route::get('categories','CategoriesController@index');
@@ -108,6 +124,7 @@ Route::get('products/show1/{product}','ProductsController@show1
 
 
 
+
 Route::get('detaillefactures','DetaillefacturesController@index');
 Route::get('detaillefactures/create','DetaillefacturesController@create');
 Route::post('detaillefactures','DetaillefacturesController@store');
@@ -117,7 +134,9 @@ Route::post('detaillefactures/destroy/{detaillefacture}','DetaillefacturesContro
 
 
 
+
 Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:manage-users')->group(function(){
     Route::resource('users','UsersController');
 });
+
 

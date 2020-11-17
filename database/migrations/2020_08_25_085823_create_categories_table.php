@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCaissiersTable extends Migration
+class CreateCategoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,9 @@ class CreateCaissiersTable extends Migration
      */
     public function up()
     {
-        Schema::create('caissiers', function (Blueprint $table) {
+        Schema::create('categories', function (Blueprint $table) {
             $table->id();
-            $table->string('nom_caissier');
-            $table->string('prenom_caissier');
-            $table->string('address');
-            $table->string('tel');
+            $table->string('cat_name');
             $table->timestamps();
         });
     }
@@ -30,6 +27,6 @@ class CreateCaissiersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('caissiers');
+        Schema::dropIfExists('categories');
     }
 }
