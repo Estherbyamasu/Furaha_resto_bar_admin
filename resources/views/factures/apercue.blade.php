@@ -54,7 +54,7 @@
            
             <table >
             <tr>
-            <td>ID:</td>
+            <td>Facture num:</td>
             <td>{{$facture->id}}</td>
             </tr>
             <tr>
