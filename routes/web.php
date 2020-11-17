@@ -45,6 +45,8 @@ Route::get('factures/edit/{facture}','FacturesController@edit');
 Route::put('factures/{facture}','FacturesController@update');
 Route::post('factures/destroy/{facture}','FacturesController@destroy');
 Route::post('search','FacturesController@search');
+Route::get('factures/show','FacturesController@show');
+Route::get('factures/apercue/{facture}','FacturesController@apercue');
 
 
 Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:manage-users')->group(function(){
