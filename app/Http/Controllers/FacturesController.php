@@ -96,20 +96,57 @@ class FacturesController extends Controller
             ->select('clients.*', 'serveurs.*', 'users.*','factures.*')
             ->wherebetween('date_facture',[$date_debut, $date_fin])
          ->get();
-
-         return view('factures.index',compact('factures'),[
+         $total = DB::table('factures')
+                ->join('clients', 'factures.client_id', '=', 'clients.id')
+                ->join('serveurs', 'factures.serveur_id', '=', 'serveurs.id')
+                ->join('users', 'factures.user_id', '=', 'users.id')
+                ->select(DB::raw('sum(factures.montant) as total'))
+                ->wherebetween('date_facture',[$date_debut, $date_fin])
+                ->first();
+         return view('factures.show',compact('factures'),[
             
             'clients' => $clients,
             'serveurs' => $serveurs,
-            'users' => $users
+            'users' => $users,
+            'total'=>$total->total
         ]);
     }
-    
-    public function show()
+    // public function show1(Request $request)
+    // {
+    //     $clients = Client::all();
+    //     $serveurs = Serveur::all();
+    //     $users = User::all();
+
+    //     $date_debut=$request->date_debut;
+    //     $date_fin=$request->date_fin;
+    //     $factures=  DB::table('factures')
+    //         ->join('clients', 'factures.client_id', '=', 'clients.id')
+    //         ->join('serveurs', 'factures.serveur_id', '=', 'serveurs.id')
+    //         ->join('users', 'factures.user_id', '=', 'users.id')
+    //         ->select('clients.*', 'serveurs.*', 'users.*','factures.*')
+    //         ->wherebetween('date_facture',[$date_debut, $date_fin])
+    //      ->get();
+    //      $total = DB::table('factures')
+    //             ->join('clients', 'factures.client_id', '=', 'clients.id')
+    //             ->join('serveurs', 'factures.serveur_id', '=', 'serveurs.id')
+    //             ->join('users', 'factures.user_id', '=', 'users.id')
+    //             ->select(DB::raw('sum(factures.montant) as total'))
+    //             ->wherebetween('date_facture',[$date_debut, $date_fin])
+    //             ->first();
+    //      return view('factures.index',compact('factures'),[
+            
+    //         'clients' => $clients,
+    //         'serveurs' => $serveurs,
+    //         'users' => $users,
+    //         'total'=>$total->total
+    //     ]);
+    // }
+    public function show(Request $request)
     {
         $clients = Client::all();
         $serveurs = Serveur::all();
         $users = User::all();
+      
         $factures = DB::table('factures')
             ->join('clients', 'factures.client_id', '=', 'clients.id')
             ->join('serveurs', 'factures.serveur_id', '=', 'serveurs.id')
@@ -122,8 +159,9 @@ class FacturesController extends Controller
             ->join('users', 'factures.user_id', '=', 'users.id')
             ->select(DB::raw('sum(factures.montant) as total'))
             ->first();
-
-        return view('factures/show',[
+            
+            
+        return view('factures.show',[
             'factures' => $factures,
             'clients' => $clients,
             'serveurs' => $serveurs,

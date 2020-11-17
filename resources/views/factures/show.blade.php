@@ -18,7 +18,7 @@
             
             <span aria-hidden="true">&times;</span></a>
           </button></a>
-
+       
     <div class="row">
         <div class="col-lg-12">
             <div class="panel panel-default">
