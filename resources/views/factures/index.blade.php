@@ -24,8 +24,8 @@
             <div class="panel panel-default">
             
          
-
-
+            <a href="{{url('factures/show')}}" class="btn btn-success">rapport</a>
+           
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
  Inserer un Nouveau facture
 </button>  
@@ -73,6 +73,7 @@
                         <td>{{$facture->montant}}</td>
                         <td>
                             <a href="factures/edit/{{$facture->id}}" class="glyphicon glyphicon-edit    btn btn-primary">Edit</a>
+                            <a href="factures/apercue/{{$facture->id}}" class="glyphicon glyphicon-play btn btn-primary" >Voir la facture</a>
                             <form action="factures/destroy/{{$facture->id}}" method="POST">
                             @csrf
                                 <button type="submit" onclick="return confirm('Voulez vs vraiment supprimer cet facture ?')" class="glyphicon glyphicon-delite glyphicon-trash  btn btn-danger">Delete</button>
@@ -80,6 +81,10 @@
                         </td>
                     </tr>
                     @endforeach
+                    <tr>
+                        <td colspan="3"><b>Montant Total</b></td>
+                        <td colspan="3" align="right"><b>{{$total}}</b></td>
+                    </tr>
                 </tbody>
             </table>
         </div>

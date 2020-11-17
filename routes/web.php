@@ -48,9 +48,15 @@ Route::post('factures/destroy/{facture}','FacturesController@destroy');
 Route::post('search','FacturesController@search');
 
 
+Route::get('factures/show','FacturesController@show');
+Route::get('factures/apercue/{facture}','FacturesController@apercue');
+
+
+
 Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:manage-users')->group(function(){
     Route::resource('users','UsersController');
 });
+
 
 
 Route::get('categories','CategoriesController@index');
@@ -85,4 +91,5 @@ Route::post('detaillefactures','DetaillefacturesController@store');
 Route::get('detaillefactures/edit/{detaillefacture}','DetaillefacturesController@edit');
 Route::put('detaillefactures/{detaillefacture}','DetaillefacturesController@update');
 Route::post('detaillefactures/destroy/{detaillefacture}','DetaillefacturesController@destroy');
+
 
