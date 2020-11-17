@@ -25,11 +25,20 @@ class FacturesController extends Controller
             ->join('users', 'factures.user_id', '=', 'users.id')
             ->select('clients.*', 'serveurs.*', 'users.*','factures.*')
             ->get();
+
+            $total = DB::table('factures')
+                        ->join('clients', 'factures.client_id', '=', 'clients.id')
+                        ->join('serveurs', 'factures.serveur_id', '=', 'serveurs.id')
+                        ->join('users', 'factures.user_id', '=', 'users.id')
+                        ->select(DB::raw('sum(factures.montant) as total'))
+                        ->first();
+                        
         return view('factures/index',[
             'factures' => $factures,
             'clients' => $clients,
             'serveurs' => $serveurs,
-            'users' => $users
+            'users' => $users,
+            'total'=>$total->total
         ]);
     }
 
@@ -56,7 +65,7 @@ class FacturesController extends Controller
         $request->validate([
             'client_id' => 'required',
             'serveur_id' => 'required',
-            'user_id' => 'required',
+         
             'montant' => 'required',
             'date_facture' => 'required'
         ]);
@@ -80,7 +89,12 @@ class FacturesController extends Controller
 
         $date_debut=$request->date_debut;
         $date_fin=$request->date_fin;
-        $factures= Facture::wherebetween('date_facture',[$date_debut, $date_fin])
+        $factures=  DB::table('factures')
+            ->join('clients', 'factures.client_id', '=', 'clients.id')
+            ->join('serveurs', 'factures.serveur_id', '=', 'serveurs.id')
+            ->join('users', 'factures.user_id', '=', 'users.id')
+            ->select('clients.*', 'serveurs.*', 'users.*','factures.*')
+            ->wherebetween('date_facture',[$date_debut, $date_fin])
          ->get();
 
          return view('factures.index',compact('factures'),[
@@ -91,9 +105,32 @@ class FacturesController extends Controller
         ]);
     }
     
-    public function show(Facture $facture)
+    public function show()
     {
-        //
+        $clients = Client::all();
+        $serveurs = Serveur::all();
+        $users = User::all();
+        $factures = DB::table('factures')
+            ->join('clients', 'factures.client_id', '=', 'clients.id')
+            ->join('serveurs', 'factures.serveur_id', '=', 'serveurs.id')
+            ->join('users', 'factures.user_id', '=', 'users.id')
+            ->select('clients.*', 'serveurs.*', 'users.*','factures.*')
+            ->get();
+            $total = DB::table('factures')
+            ->join('clients', 'factures.client_id', '=', 'clients.id')
+            ->join('serveurs', 'factures.serveur_id', '=', 'serveurs.id')
+            ->join('users', 'factures.user_id', '=', 'users.id')
+            ->select(DB::raw('sum(factures.montant) as total'))
+            ->first();
+
+        return view('factures/show',[
+            'factures' => $factures,
+            'clients' => $clients,
+            'serveurs' => $serveurs,
+            'users' => $users,
+            'total'=>$total->total
+        ]);
+    
     }
 
    
@@ -111,7 +148,25 @@ class FacturesController extends Controller
             'users' => $users
         ]);
     }
+    public function apercue($id)
+    {
 
+    
+        $facture = DB::table('factures')
+            ->join('clients', 'factures.client_id', '=', 'clients.id')
+            ->join('serveurs', 'factures.serveur_id', '=', 'serveurs.id')
+            ->join('users', 'factures.user_id', '=', 'users.id')
+            ->select('clients.*', 'serveurs.*', 'users.*','factures.*')
+             ->where('factures.id',$id)
+            ->first();
+        return view('factures.apercue',[
+            'facture' => $facture
+            
+        ]);
+
+        // $factures = facture::with(['factures'])->find($id);
+        // return view('factures.apercue',compact('factures'));
+    }
     
     public function update(Request $request, Facture $facture)
     {
@@ -119,7 +174,7 @@ class FacturesController extends Controller
         $request->validate([
             'client_id' => 'required',
             'serveur_id' => 'required',
-            'user_id' => 'required',
+         
             'montant' => 'required',
             'date_facture' => 'required'
         ]);
