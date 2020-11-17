@@ -35,13 +35,12 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="nom_caissier">Nom caissier</label>
-                    <select name="caissier_id" id="" class="form-control">
-                        <option value="">Select caissier</option>
-                        @foreach($caissiers as $caissier)
-                        <option value="{{$caissier->id}}">{{$caissier->nom_caissier}}</option>
-                        @endforeach
-                    </select>
+            <label for="">Name user</label>
+                    <input type="text" name="name" id="name" class="form-control" value="{{ Auth::user()->name }}"
+                    class="@error('name') is-danger @enderror " placeholder="" aria-describedby="helpId" required>
+                    @error('name')
+                    <div class="alert alert-danger">{{$message}}</div>
+                    @enderror
                 </div>
                 <div class="form-group">
                     <label for="nom_serveur">Nom serveur</label>
