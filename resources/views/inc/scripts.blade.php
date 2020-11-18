@@ -56,6 +56,7 @@
       "autoWidth": false,
     });
 </script>
+
 <script>
   $(function() {
                 $("#example1").dataTable();
@@ -69,3 +70,5 @@
                 });
             });
 </script>
+
+       

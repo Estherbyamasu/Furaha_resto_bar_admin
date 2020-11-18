@@ -14,7 +14,7 @@ class DetaillefacturesController extends Controller
     
     public function index()
     {
-        //
+      
         $products = Product::all();
         $factures = Facture::all();
         
@@ -28,6 +28,7 @@ class DetaillefacturesController extends Controller
             'detaillefactures' => $detaillefactures,
             'products' => $products,
             'factures' => $factures
+            
            
         ]);
     }
@@ -37,7 +38,12 @@ class DetaillefacturesController extends Controller
     {
         //
         $products = Product::all();
-        $factures = Facture::all();
+        $factures = DB::table('factures')
+        ->join('clients', 'factures.client_id', '=', 'clients.id')
+        ->join('serveurs', 'factures.serveur_id', '=', 'serveurs.id')
+        ->join('users', 'factures.user_id', '=', 'users.id')
+        ->select('clients.*', 'serveurs.*', 'users.*','factures.*')
+        ->get();
       
         return view('detaillefactures/create',[
             
@@ -70,17 +76,39 @@ class DetaillefacturesController extends Controller
     }
     
     
-    public function show(Detaillefacture $detaillefacture)
-    {
-        //
-    }
+    // public function show(Request $request)
+    // {
+    //     if ($request->has('facture_id')) {
+    //         $client_id = $request->get('client_id');
+    //         $serveur_id = $request->get('serveur_id');
+    //         $user_id = $request->get('user_id');
+    //         $detaillefactures = DB::table('factures')
+    //                 ->join('clients', 'factures.client_id', '=', 'clients.id')
+    //                 ->join('serveurs', 'factures.serveur_id', '=', 'serveurs.id')
+    //                 ->join('users', 'factures.user_id', '=', 'users.id')
+    //                 ->select('clients.*', 'serveurs.*', 'users.*','factures.*')
+    //                 ->where('clients.id', '=', $client_id and 'serveurs.id', '=', $serveur_id and 'users.id', '=', $user_id)
+    //                 ->get();
+    //             }
+    //                 return view('detaillefactures/show', [
+    //                     'detaillefactures' => $detaillefactures
+            
+    //                 ]);
+        
+       
+    // }
 
-   
+
     public function edit(Detaillefacture $detaillefacture)
     {
         //
         $products = Product::all();
-        $factures = Facture::all();
+        $factures = DB::table('factures')
+        ->join('clients', 'factures.client_id', '=', 'clients.id')
+        ->join('serveurs', 'factures.serveur_id', '=', 'serveurs.id')
+        ->join('users', 'factures.user_id', '=', 'users.id')
+        ->select('clients.*', 'serveurs.*', 'users.*','factures.*')
+        ->get();
       
         $detaillefacture = Detaillefacture::find($detaillefacture->id);
         return view('detaillefactures/edit',[

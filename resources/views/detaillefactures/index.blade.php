@@ -36,6 +36,7 @@
                 @csrf
                 <div class="row">
                 <div class="col-lg-6">
+            
                 <div class="form-group">
                     <label for="nom_produit">Nom produit</label>
                     <select name="product_id" id="" class="form-control" 
@@ -53,8 +54,8 @@
                 <div class="col-lg-6">
                 <div class="form-group">
                     <label for="date_facture">Date facture</label>
-                    <select name="facture_id" id="" class="form-control" 
-                    class="@error('prix_unitaire') is-danger @enderror" required>
+                    <select name="facture_id" id="facture_id" class="form-control" 
+                    class="@error('date_facture') is-danger @enderror" required>
                         <option value="">Select facture</option>
                         @foreach($factures as $facture)
                         <option value="{{$facture->id}}">{{$facture->date_facture}}</option>
@@ -67,6 +68,7 @@
                 </div>
                 </div>
                 
+                <div class="col-lg-6">
                 <div class="form-group">
                     <label for="">Quantite</label>
                     <input type="text" name="quantite" id="quantite" class="form-control"
@@ -75,6 +77,8 @@
                     <div class="alert alert-danger">{{$message}}</div>
                     @enderror
                 </div>
+                </div>
+                <div class="col-lg-6">
                 <div class="form-group">
                     <label for="">Prix unitaire</label>
                     <input type="text" name="prix_unitaire" id="prix_unitaire" class="form-control"
@@ -82,6 +86,7 @@
                     @error('prix_unitaire')
                     <div class="alert alert-danger">{{$message}}</div>
                     @enderror
+                </div>
                 </div>
                 <div class="row">
             <div class="text-center mb-3 col-md-6">

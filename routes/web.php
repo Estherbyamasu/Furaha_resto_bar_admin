@@ -88,6 +88,7 @@ Route::get('products/show1/{product}','ProductsController@show1
 Route::get('detaillefactures','DetaillefacturesController@index');
 Route::get('detaillefactures/create','DetaillefacturesController@create');
 Route::post('detaillefactures','DetaillefacturesController@store');
+
 Route::get('detaillefactures/edit/{detaillefacture}','DetaillefacturesController@edit');
 Route::put('detaillefactures/{detaillefacture}','DetaillefacturesController@update');
 Route::post('detaillefactures/destroy/{detaillefacture}','DetaillefacturesController@destroy');
