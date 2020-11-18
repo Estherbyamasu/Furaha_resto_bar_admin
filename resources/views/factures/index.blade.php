@@ -87,7 +87,7 @@
                     @endforeach
                     <tr>
                         <td colspan="3"><b>Montant Total</b></td>
-                        <td colspan="3" align="right"><b>{{$total}}</b></td>
+                        <td colspan="5" align="right"><b>{{$total}}</b></td>
                     </tr>
                 </tbody>
             </table>
