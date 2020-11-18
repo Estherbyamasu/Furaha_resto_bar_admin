@@ -52,6 +52,15 @@
                     </select>
                 </div>
                 <div class="form-group">
+                    <label for="nom_produit">Nom product</label>
+                    <select name="productid" id="" class="form-control">
+                        <option value="">Select product/option>
+                        @foreach($product as $product)
+                        <option value="{{$product->id}}">{{$product->nom_produit}}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="form-group">
                     <label for="">Date facture</label>
                     <input type="text" name="date_facture" id="date_facture" value="{{$facture->date_facture}}"  class="@error('date_facture') is-danger @enderror form-control datepicker" placeholder="" aria-describedby="helpId">
                     @error('date_facture')

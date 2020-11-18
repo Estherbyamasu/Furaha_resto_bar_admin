@@ -56,7 +56,11 @@
 				<em class="fa fa-cog">&nbsp;</em> Liste menu<span data-toggle="collapse" href="#sub-item-1" class="icon pull-right"><em class="fa fa-plus"></em></span>
 				</a>
 				<ul class="children collapse" id="sub-item-1">
+<<<<<<< HEAD
 
+=======
+					
+>>>>>>> products
 					<li><a class="" href="{{ url('clients')}}">
 						<span class="fa fa-users">&nbsp;</span> Clients
 					</a></li>

@@ -78,6 +78,7 @@
                         <th scope="col">ID</th>
                         <th scope="col">Nom client</th>
                         <th scope="col">Nom utilisateur</th>
+                        <th scope="col">Nom produit</th>
                         <th scope="col">Nom serveur</th>
                         <th scope="col">Date facture</th>
                         <th scope="col">Montant</th>
@@ -90,6 +91,7 @@
                         <td>{{$facture->id}}</td>
                         <td>{{$facture->nom_client}}</td>
                         <td>{{$facture->name}}</td>
+                        <td>{{$facture->nom_produit}}</td>
                         <td>{{$facture->nom_serveur}}</td>
                         <td>{{$facture->date_facture}}</td>
                         <td>{{$facture->montant}}</td>

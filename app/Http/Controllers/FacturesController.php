@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Client;
+use App\Product;
 use App\Facture;
 use App\Serveur;
 use Illuminate\Http\Request;
@@ -15,7 +16,7 @@ class FacturesController extends Controller
     
     public function index()
     {
-        //
+        $products = Product::all();
         $clients = Client::all();
         $serveurs = Serveur::all();
         $users = User::all();
@@ -38,6 +39,7 @@ class FacturesController extends Controller
             'clients' => $clients,
             'serveurs' => $serveurs,
             'users' => $users,
+            'products' => $products,
             'total'=>$total->total
         ]);
     }
@@ -45,7 +47,7 @@ class FacturesController extends Controller
     
     public function create()
     {
-        //
+        $products = Product::all();
         $clients = Client::all();
         $serveurs = Serveur::all();
         $users = User::all();
@@ -53,7 +55,8 @@ class FacturesController extends Controller
             
             'clients' => $clients,
             'serveurs' => $serveurs,
-            'users' => $users
+            'users' => $users,
+            'products' => $products
         ]);
     }
 
@@ -65,7 +68,7 @@ class FacturesController extends Controller
         $request->validate([
             'client_id' => 'required',
             'serveur_id' => 'required',
-         
+            'product_id' => 'required',
             'montant' => 'required',
             'date_facture' => 'required'
         ]);
@@ -73,6 +76,7 @@ class FacturesController extends Controller
         $facture = new Facture();
         $facture->client_id = $request->client_id;
         $facture->serveur_id = $request->serveur_id;
+        $facture->product_id = $request->product_id;
         $facture->user_id = Auth::id();
         $facture->montant = $request->montant;
         $facture->date_facture = $request->date_facture;
@@ -82,7 +86,7 @@ class FacturesController extends Controller
     }
     public function search(Request $request)
     {
-
+        $products = Product::all();
         $clients = Client::all();
         $serveurs = Serveur::all();
         $users = User::all();
@@ -108,6 +112,7 @@ class FacturesController extends Controller
             'clients' => $clients,
             'serveurs' => $serveurs,
             'users' => $users,
+            'products' => $products,
             'total'=>$total->total
         ]);
     }
@@ -143,6 +148,7 @@ class FacturesController extends Controller
     // }
     public function show(Request $request)
     {
+        $products = Product::all();
         $clients = Client::all();
         $serveurs = Serveur::all();
         $users = User::all();
@@ -166,6 +172,7 @@ class FacturesController extends Controller
             'clients' => $clients,
             'serveurs' => $serveurs,
             'users' => $users,
+            'products' => $products,
             'total'=>$total->total
         ]);
     
@@ -174,7 +181,7 @@ class FacturesController extends Controller
    
     public function edit(Facture $facture)
     {
-        //
+          $products = Product::all();
         $clients = Client::all();
         $serveurs = Serveur::all();
         $users = User::all();
@@ -183,6 +190,7 @@ class FacturesController extends Controller
             'facture' => $facture,
             'clients' => $clients,
             'serveurs' => $serveurs,
+            'products' => $products,
             'users' => $users
         ]);
     }
@@ -212,13 +220,14 @@ class FacturesController extends Controller
         $request->validate([
             'client_id' => 'required',
             'serveur_id' => 'required',
-         
+            'product_id' => 'required',
             'montant' => 'required',
             'date_facture' => 'required'
         ]);
 
         $facture->client_id = $request->client_id;
         $facture->serveur_id = $request->serveur_id;
+        $facture->product_id = $request->product_id;
         $facture->user_id = Auth::id();
         $facture->montant = $request->montant;
         $facture->date_facture = $request->date_facture;
