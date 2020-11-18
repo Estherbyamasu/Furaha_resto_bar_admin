@@ -54,6 +54,7 @@ Route::get('factures','FacturesController@index');
 Route::get('factures/create','FacturesController@create');
 Route::post('factures','FacturesController@store');
 Route::get('factures/edit/{facture}','FacturesController@edit');
+Route::post('search','FacturesController@search');
 Route::put('factures/{facture}','FacturesController@update');
 Route::post('factures/destroy/{facture}','FacturesController@destroy');
 Route::post('search','FacturesController@search');
@@ -90,7 +91,7 @@ Route::post('products','ProductsController@store');
 Route::get('products/edit/{product}','ProductsController@edit');
 Route::put('products/{product}','ProductsController@update');
 Route::post('products/destroy/{product}','ProductsController@destroy');
-Route::post('search','ProductsController@search');
+
 Route::get('products/show/{product}','ProductsController@show');
 
 Route::get('products/show1/{product}','ProductsController@show1');
