@@ -43,7 +43,7 @@ Route::post('products','ProductsController@store');
 Route::get('products/edit/{product}','ProductsController@edit');
 Route::put('products/{product}','ProductsController@update');
 Route::post('products/destroy/{product}','ProductsController@destroy');
-Route::post('search','ProductsController@search');
+
 Route::get('products/show/{product}','ProductsController@show');
 Route::get('products/show1/{product}','ProductsController@show1
 ');
