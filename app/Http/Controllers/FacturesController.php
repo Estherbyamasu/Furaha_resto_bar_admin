@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Client;
+use App\Product;
 use App\Facture;
 use App\Serveur;
 use Illuminate\Http\Request;
@@ -15,7 +16,7 @@ class FacturesController extends Controller
     
     public function index()
     {
-        //
+        $products = Product::all();
         $clients = Client::all();
         $serveurs = Serveur::all();
         $users = User::all();
@@ -23,13 +24,15 @@ class FacturesController extends Controller
             ->join('clients', 'factures.client_id', '=', 'clients.id')
             ->join('serveurs', 'factures.serveur_id', '=', 'serveurs.id')
             ->join('users', 'factures.user_id', '=', 'users.id')
-            ->select('clients.*', 'serveurs.*', 'users.*','factures.*')
+            ->join('products', 'factures.product_id', '=', 'products.id')
+            ->select('clients.*', 'serveurs.*', 'users.*','factures.*','products.*')
             ->get();
 
             $total = DB::table('factures')
                         ->join('clients', 'factures.client_id', '=', 'clients.id')
                         ->join('serveurs', 'factures.serveur_id', '=', 'serveurs.id')
                         ->join('users', 'factures.user_id', '=', 'users.id')
+                        ->join('products', 'factures.product_id', '=', 'products.id')
                         ->select(DB::raw('sum(factures.montant) as total'))
                         ->first();
                         
@@ -38,6 +41,7 @@ class FacturesController extends Controller
             'clients' => $clients,
             'serveurs' => $serveurs,
             'users' => $users,
+            'products' => $products,
             'total'=>$total->total
         ]);
     }
@@ -45,7 +49,7 @@ class FacturesController extends Controller
     
     public function create()
     {
-        //
+        $products = Product::all();
         $clients = Client::all();
         $serveurs = Serveur::all();
         $users = User::all();
@@ -53,7 +57,8 @@ class FacturesController extends Controller
             
             'clients' => $clients,
             'serveurs' => $serveurs,
-            'users' => $users
+            'users' => $users,
+            'products' => $products
         ]);
     }
 
@@ -66,6 +71,9 @@ class FacturesController extends Controller
             'client_id' => 'required',
             'serveur_id' => 'required',
 
+            'product_id' => 'required',
+            'quantite' => 'required',
+
             'montant' => 'required',
             'date_facture' => 'required'
         ]);
@@ -73,7 +81,9 @@ class FacturesController extends Controller
         $facture = new Facture();
         $facture->client_id = $request->client_id;
         $facture->serveur_id = $request->serveur_id;
+        $facture->product_id = $request->product_id;
         $facture->user_id = Auth::id();
+        $facture->quantite = $request->quantite;
         $facture->montant = $request->montant;
         $facture->date_facture = $request->date_facture;
         $facture->save();
@@ -82,7 +92,7 @@ class FacturesController extends Controller
     }
     public function search(Request $request)
     {
-
+        $products = Product::all();
         $clients = Client::all();
         $serveurs = Serveur::all();
         $users = User::all();
@@ -93,13 +103,15 @@ class FacturesController extends Controller
             ->join('clients', 'factures.client_id', '=', 'clients.id')
             ->join('serveurs', 'factures.serveur_id', '=', 'serveurs.id')
             ->join('users', 'factures.user_id', '=', 'users.id')
-            ->select('clients.*', 'serveurs.*', 'users.*','factures.*')
+            ->join('products', 'factures.product_id', '=', 'products.id')
+            ->select('clients.*', 'serveurs.*', 'users.*','factures.*','products.*')
             ->wherebetween('date_facture',[$date_debut, $date_fin])
          ->get();
          $total = DB::table('factures')
                 ->join('clients', 'factures.client_id', '=', 'clients.id')
                 ->join('serveurs', 'factures.serveur_id', '=', 'serveurs.id')
                 ->join('users', 'factures.user_id', '=', 'users.id')
+                ->join('products', 'factures.product_id', '=', 'products.id')
                 ->select(DB::raw('sum(factures.montant) as total'))
                 ->wherebetween('date_facture',[$date_debut, $date_fin])
                 ->first();
@@ -108,6 +120,7 @@ class FacturesController extends Controller
             'clients' => $clients,
             'serveurs' => $serveurs,
             'users' => $users,
+            'products' => $products,
             'total'=>$total->total
         ]);
     }
@@ -143,6 +156,7 @@ class FacturesController extends Controller
     // }
     public function show(Request $request)
     {
+        $products = Product::all();
         $clients = Client::all();
         $serveurs = Serveur::all();
         $users = User::all();
@@ -151,12 +165,14 @@ class FacturesController extends Controller
             ->join('clients', 'factures.client_id', '=', 'clients.id')
             ->join('serveurs', 'factures.serveur_id', '=', 'serveurs.id')
             ->join('users', 'factures.user_id', '=', 'users.id')
-            ->select('clients.*', 'serveurs.*', 'users.*','factures.*')
+            ->join('products', 'factures.product_id', '=', 'products.id')
+            ->select('clients.*', 'serveurs.*', 'users.*','factures.*','products.*')
             ->get();
             $total = DB::table('factures')
             ->join('clients', 'factures.client_id', '=', 'clients.id')
             ->join('serveurs', 'factures.serveur_id', '=', 'serveurs.id')
             ->join('users', 'factures.user_id', '=', 'users.id')
+            ->join('products', 'factures.product_id', '=', 'products.id')
             ->select(DB::raw('sum(factures.montant) as total'))
             ->first();
             
@@ -166,6 +182,7 @@ class FacturesController extends Controller
             'clients' => $clients,
             'serveurs' => $serveurs,
             'users' => $users,
+            'products' => $products,
             'total'=>$total->total
         ]);
     
@@ -174,7 +191,7 @@ class FacturesController extends Controller
    
     public function edit(Facture $facture)
     {
-        //
+          $products = Product::all();
         $clients = Client::all();
         $serveurs = Serveur::all();
         $users = User::all();
@@ -183,6 +200,7 @@ class FacturesController extends Controller
             'facture' => $facture,
             'clients' => $clients,
             'serveurs' => $serveurs,
+            'products' => $products,
             'users' => $users
         ]);
     }
@@ -194,7 +212,8 @@ class FacturesController extends Controller
             ->join('clients', 'factures.client_id', '=', 'clients.id')
             ->join('serveurs', 'factures.serveur_id', '=', 'serveurs.id')
             ->join('users', 'factures.user_id', '=', 'users.id')
-            ->select('clients.*', 'serveurs.*', 'users.*','factures.*')
+            ->join('products', 'factures.product_id', '=', 'products.id')
+            ->select('clients.*', 'serveurs.*', 'users.*','factures.*','products.*')
              ->where('factures.id',$id)
             ->first();
         return view('factures.apercue',[
@@ -213,13 +232,18 @@ class FacturesController extends Controller
             'client_id' => 'required',
             'serveur_id' => 'required',
 
+            'product_id' => 'required',
+            'quantite' => 'required',
+
             'montant' => 'required',
             'date_facture' => 'required'
         ]);
 
         $facture->client_id = $request->client_id;
         $facture->serveur_id = $request->serveur_id;
+        $facture->product_id = $request->product_id;
         $facture->user_id = Auth::id();
+        $facture->quantite = $request->quantite;
         $facture->montant = $request->montant;
         $facture->date_facture = $request->date_facture;
         $facture->save();

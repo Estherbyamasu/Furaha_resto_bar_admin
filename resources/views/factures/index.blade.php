@@ -55,8 +55,10 @@
                     <tr>
                         <th scope="col">ID</th>
                         <th scope="col">Nom client</th>
+                        <th scope="col">Nom produit</th>
                         <th scope="col">Nom utilisateur</th>
                         <th scope="col">Nom serveur</th>
+                        <th scope="col">Quantite</th>
                         <th scope="col">Date facture</th>
                         <th scope="col">Montant</th>
                         <th scope="col">Options</th>
@@ -68,8 +70,10 @@
                         <td>{{$facture->id}}</td>
                         <td>{{$facture->nom_client}}</td>
                         <td>{{$facture->name}}</td>
+                        <td>{{$facture->nom_produit}}</td>
                         <td>{{$facture->nom_serveur}}</td>
                         <td>{{$facture->date_facture}}</td>
+                        <td>{{$facture->quantite}}</td>
                         <td>{{$facture->montant}}</td>
                         <td>
                             <a href="factures/edit/{{$facture->id}}" class="glyphicon glyphicon-edit    btn btn-primary">Edit</a>
@@ -83,7 +87,7 @@
                     @endforeach
                     <tr>
                         <td colspan="3"><b>Montant Total</b></td>
-                        <td colspan="3" align="right"><b>{{$total}}</b></td>
+                        <td colspan="5" align="right"><b>{{$total}}</b></td>
                     </tr>
                 </tbody>
             </table>
@@ -146,6 +150,24 @@
                 </div>
                 </div> 
                 </div> 
+                <div class="row"> 
+                <div class="col-lg-6">
+            
+                <div class="form-group">
+                    <label for="nom_produit">Nom produit</label>
+                    <select name="product_id" id="" class="form-control" 
+                    class="@error('prix_unitaire') is-danger @enderror" required>
+                        <option value="">Select product</option>
+                        @foreach($products as $product)
+                        <option value="{{$product->id}}">{{$product->nom_produit}}</option>
+                        @endforeach
+                        @error('product_id')
+                    <div class="alert alert-danger">{{$message}}</div>
+                    @enderror
+                    </select>
+                </div>
+                </div>
+                <div class="col-lg-6">
                 <div class="form-group">
             <label for="">Name user</label>
                     <input type="text" name="name" id="name" class="form-control" value="{{ Auth::user()->name }}"
@@ -153,6 +175,7 @@
                     @error('name')
                     <div class="alert alert-danger">{{$message}}</div>
                     @enderror
+                </div>
                 </div>
             <div class="form-group">
             <label for="">Date facture</label>
@@ -172,7 +195,14 @@
                     <div class="alert alert-danger">{{$message}}</div>
                     @enderror
                 </div>
-                
+                <div class="form-group">
+            <label for="">Quantite</label>
+                    <input type="text" name="quantite" id="quantite" class="form-control "
+                    class="@error('quantite') is-danger @enderror " placeholder="" aria-describedby="helpId" required>
+                    @error('quantite')
+                    <div class="alert alert-danger">{{$message}}</div>
+                    @enderror
+                </div>
                 
                 <div class="row">
             <div class="text-center mb-3 col-md-6">

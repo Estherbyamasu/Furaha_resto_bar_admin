@@ -53,6 +53,15 @@
                     </select>
                 </div>
                 <div class="form-group">
+                    <label for="nom_produit">Nom product</label>
+                    <select name="productid" id="" class="form-control">
+                        <option value="">Select product/option>
+                        @foreach($product as $product)
+                        <option value="{{$product->id}}">{{$product->nom_produit}}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="form-group">
                     <label for="">Date facture</label>
                     <input type="text" name="date_facture" id="date_facture" value="{{$facture->date_facture}}"  class="@error('date_facture') is-danger @enderror form-control datepicker" placeholder="" aria-describedby="helpId">
                     @error('date_facture')
@@ -66,7 +75,13 @@
                     <div class="alert alert-danger">{{$message}}</div>
                     @enderror
                 </div>
-                
+                <div class="form-group">
+                    <label for="">Quantite</label>
+                    <input type="text" name="quantite" id="quantite" value="{{$facture->quantite}}"  class="form-control " class="@error('quantite') is-danger @enderror " placeholder="" aria-describedby="helpId">
+                    @error('quantite')
+                    <div class="alert alert-danger">{{$message}}</div>
+                    @enderror
+                </div>
                 <div class="row">
             <div class="text-center mb-3 col-md-6">
               <button type="submit" class=" glyphicon glyphicon-edit btn btn-success btn-block btn-rounded z-depth-1">Modifier</button>

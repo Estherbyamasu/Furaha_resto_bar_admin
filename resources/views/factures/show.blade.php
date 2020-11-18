@@ -78,8 +78,10 @@
                         <th scope="col">ID</th>
                         <th scope="col">Nom client</th>
                         <th scope="col">Nom utilisateur</th>
+                        <th scope="col">Nom produit</th>
                         <th scope="col">Nom serveur</th>
                         <th scope="col">Date facture</th>
+                        <th scope="col">Quantite</th>
                         <th scope="col">Montant</th>
                        
                     </tr>
@@ -90,15 +92,17 @@
                         <td>{{$facture->id}}</td>
                         <td>{{$facture->nom_client}}</td>
                         <td>{{$facture->name}}</td>
+                        <td>{{$facture->nom_produit}}</td>
                         <td>{{$facture->nom_serveur}}</td>
                         <td>{{$facture->date_facture}}</td>
+                        <td>{{$facture->quantite}}</td>
                         <td>{{$facture->montant}}</td>
                        
                     </tr>
                     @endforeach
                     <tr>
                         <td colspan="3"><b>Montant Total</b></td>
-                        <td colspan="3" align="right"><b>{{$total}}</b></td>
+                        <td colspan="5" align="right"><b>{{$total}}</b></td>
                     </tr>
                 </tbody>
             </table>

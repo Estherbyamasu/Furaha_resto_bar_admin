@@ -20,6 +20,7 @@ class CreateFacturesTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('serveur_id');
             $table->integer('montant');
+            $table->integer('quantite');
             $table->datetime('date_facture');
             $table->timestamps();
 
@@ -27,7 +28,10 @@ class CreateFacturesTable extends Migration
                 ->references('id')
                 ->on('clients')
                 ->onDelete('cascade');
-               
+                $table->foreign('product_id')
+                ->references('id')
+                ->on('products')
+                ->onDelete('cascade');
             $table->foreign('user_id')
                 ->references('id')
                 ->on('users')

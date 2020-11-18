@@ -82,7 +82,7 @@
 					<li><a class="" href="{{ url('factures')}}">
 						<span class="fa fa-bell">&nbsp;</span> Factures
 					</a></li>
-					<li><a class="" href="{{ url('detaillefactures')}}">
+					<!-- <li><a class="" href="{{ url('detaillefactures')}}">
 						<span class="fa fa-bar-chart">&nbsp;</span> Detaillefactures
 					</a></li>
 

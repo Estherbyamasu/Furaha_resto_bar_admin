@@ -65,12 +65,20 @@
             <td>{{$facture->name}}</td>
             </tr>
             <tr>
+            <td>NOM Produit:</td>
+            <td>{{$facture->nom_produit}}</td>
+            </tr>
+            <tr>
             <td>NOM Serveur:</td>
             <td>{{$facture->nom_serveur}}</td>
             </tr>
             <tr>
             <td>DATE:</td>
             <td>{{$facture->date_facture}}</td>
+            </tr>
+            <tr>
+            <td>QUANTITE:</td>
+            <td>{{$facture->quantite}}</td>
             </tr>
             <tr>
             <td>MONTANT:</td>

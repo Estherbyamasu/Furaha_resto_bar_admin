@@ -72,6 +72,8 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:mana
 
 
 
+Route::get('/', 'HomeController@index')->name('home');
+
 
 Route::get('categories','CategoriesController@index');
 Route::get('categories/create','CategoriesController@create');
@@ -126,6 +128,7 @@ Route::get('products/show1/{product}','ProductsController@show1
 
 
 
+
 Route::get('detaillefactures','DetaillefacturesController@index');
 Route::get('detaillefactures/create','DetaillefacturesController@create');
 Route::post('detaillefactures','DetaillefacturesController@store');
@@ -139,5 +142,6 @@ Route::post('detaillefactures/destroy/{detaillefacture}','DetaillefacturesContro
 Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:manage-users')->group(function(){
     Route::resource('users','UsersController');
 });
+
 
 
