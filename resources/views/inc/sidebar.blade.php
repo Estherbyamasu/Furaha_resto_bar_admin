@@ -102,7 +102,7 @@
 					@endif -->
 					</ul>
 			</li>
-			<li  class="active" ><a data-toggle="collapse" href="#sub-item-2">
+			<!-- <li  class="active" ><a data-toggle="collapse" href="#sub-item-2">
 				<em class="fa fa-cog">&nbsp;</em> Statistics<span data-toggle="collapse" href="#sub-item-2" class="icon pull-right"><em class="fa fa-plus"></em></span>
 				</a>
 				  <ul class="children collapse" id="sub-item-2">
@@ -116,12 +116,12 @@
 						<span class="fa fa-users">&nbsp;</span> Serveurs
 					</a></li>
 					</ul>
-					<!-- @if(isset(Auth::user()->admin) && Auth::user()->admin == 'Admin')
+					@if(isset(Auth::user()->admin) && Auth::user()->admin == 'Admin')
 					<li><a class="" href="{{ url('register')}}">
 						<span class="fa fa-bar-chart">&nbsp;</span> utilisateur
 					</a></li>
 					@endif -->
-			</li>
+			<!-- </li>  -->
 		
 		
 	
