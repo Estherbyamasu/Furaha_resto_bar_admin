@@ -57,6 +57,10 @@
 				</a>
 				<ul class="children collapse" id="sub-item-1">
 
+					<!-- <li><a class="" href="{{ url('caissiers')}}">
+						<span class="fa fa-user">&nbsp;</span>Caissiers
+					</a></li> -->
+
 					<li><a class="" href="{{ url('clients')}}">
 						<span class="fa fa-users">&nbsp;</span> Clients
 					</a></li>
@@ -86,7 +90,7 @@
 						<span class="fa fa-bar-chart">&nbsp;</span> Detaillefactures
 					</a></li>
 
-					<!-- <li><a class="" href="{{ url('users')}}">
+					 <li><a class="" href="{{ url('users')}}">
 						<span class="fa fa-bar-chart">&nbsp;</span> utilisateur
 					</a></li> -->
 					<!-- <li><a class="" href="{{ url('users')}}">
@@ -117,11 +121,17 @@
 						<span class="fa fa-users">&nbsp;</span> Serveurs
 					</a></li>
 					</ul>
+
 					 @if(isset(Auth::user()->admin) && Auth::user()->admin == 'Admin')
+
+					@if(isset(Auth::user()->admin) && Auth::user()->admin == 'Admin')
+
 					<li><a class="" href="{{ url('register')}}">
 						<span class="fa fa-bar-chart">&nbsp;</span> utilisateur
 					</a></li>
 					@endif -->
+
+
 
 			<!-- </li>  -->
 		

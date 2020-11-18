@@ -20,6 +20,7 @@ Route::get('/', 'HomeController@index');
 Route::get('/', 'HomeController@index')->name('home');
 
 
+
 Route::resource('/Admin/users','Admin/UsersController');
 
 
@@ -66,9 +67,11 @@ Route::get('factures/apercue/{facture}','FacturesController@apercue');
 
 
 
+
 Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:manage-users')->group(function(){
     Route::resource('users','UsersController');
 });
+
 
 
 
@@ -122,6 +125,7 @@ Route::get('achats/edit/{achat}','AchatsController@edit');
 Route::put('achats/{achat}','AchatsController@update');
 Route::post('achats/destroy/{achat}','AchatsController@destroy');
 
+
 Route::get('products/show1/{product}','ProductsController@show1
 ');
 
@@ -142,6 +146,7 @@ Route::post('detaillefactures/destroy/{detaillefacture}','DetaillefacturesContro
 Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:manage-users')->group(function(){
     Route::resource('users','UsersController');
 });
+
 
 
 

@@ -12,26 +12,9 @@ class CreateProductsTable extends Migration
      * @return void
      */
     public function up()
-<<<<<<< HEAD
 
-   
-    {  if(Schema::hasTable('products')){
 
-        Schema::create('products', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->unsignedBigInteger('category_id');
-            $table->string('nom_produit');
-            $table->integer('prix');
-            $table->timestamps();
-            $table->foreign('category_id')
-                ->references('id')
-                ->on('categories')
-                ->onDelete('cascade');
 
-        });
-    }
-}
-=======
     {
         if (!Schema::hasTable('products')) {
             Schema::create('products', function (Blueprint $table) {
@@ -47,7 +30,7 @@ class CreateProductsTable extends Migration
             });
         }
     }
->>>>>>> products
+
 
     /**
      * Reverse the migrations.
