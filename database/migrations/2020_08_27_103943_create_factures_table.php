@@ -20,6 +20,7 @@ class CreateFacturesTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('serveur_id');
             $table->integer('montant');
+            $table->integer('quantite');
             $table->datetime('date_facture');
             $table->timestamps();
 
