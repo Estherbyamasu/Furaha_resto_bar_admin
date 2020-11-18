@@ -81,6 +81,7 @@
                         <th scope="col">Nom produit</th>
                         <th scope="col">Nom serveur</th>
                         <th scope="col">Date facture</th>
+                        <th scope="col">Quantite</th>
                         <th scope="col">Montant</th>
                        
                     </tr>
@@ -94,6 +95,7 @@
                         <td>{{$facture->nom_produit}}</td>
                         <td>{{$facture->nom_serveur}}</td>
                         <td>{{$facture->date_facture}}</td>
+                        <td>{{$facture->quantite}}</td>
                         <td>{{$facture->montant}}</td>
                        
                     </tr>

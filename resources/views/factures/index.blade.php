@@ -58,6 +58,7 @@
                         <th scope="col">Nom produit</th>
                         <th scope="col">Nom utilisateur</th>
                         <th scope="col">Nom serveur</th>
+                        <th scope="col">Quantite</th>
                         <th scope="col">Date facture</th>
                         <th scope="col">Montant</th>
                         <th scope="col">Options</th>
@@ -72,6 +73,7 @@
                         <td>{{$facture->nom_produit}}</td>
                         <td>{{$facture->nom_serveur}}</td>
                         <td>{{$facture->date_facture}}</td>
+                        <td>{{$facture->quantite}}</td>
                         <td>{{$facture->montant}}</td>
                         <td>
                             <a href="factures/edit/{{$facture->id}}" class="glyphicon glyphicon-edit    btn btn-primary">Edit</a>
@@ -193,7 +195,14 @@
                     <div class="alert alert-danger">{{$message}}</div>
                     @enderror
                 </div>
-                
+                <div class="form-group">
+            <label for="">Quantite</label>
+                    <input type="text" name="quantite" id="quantite" class="form-control "
+                    class="@error('quantite') is-danger @enderror " placeholder="" aria-describedby="helpId" required>
+                    @error('quantite')
+                    <div class="alert alert-danger">{{$message}}</div>
+                    @enderror
+                </div>
                 
                 <div class="row">
             <div class="text-center mb-3 col-md-6">

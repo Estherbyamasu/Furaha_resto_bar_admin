@@ -77,6 +77,10 @@
             <td>{{$facture->date_facture}}</td>
             </tr>
             <tr>
+            <td>QUANTITE:</td>
+            <td>{{$facture->quantite}}</td>
+            </tr>
+            <tr>
             <td>MONTANT:</td>
             <td>{{$facture->montant}}</td>
             </tr>
