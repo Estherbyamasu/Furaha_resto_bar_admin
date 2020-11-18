@@ -56,9 +56,9 @@
 				<em class="fa fa-cog">&nbsp;</em> Liste menu<span data-toggle="collapse" href="#sub-item-1" class="icon pull-right"><em class="fa fa-plus"></em></span>
 				</a>
 				<ul class="children collapse" id="sub-item-1">
-					<li><a class="" href="{{ url('caissiers')}}">
+					<!-- <li><a class="" href="{{ url('caissiers')}}">
 						<span class="fa fa-user">&nbsp;</span>Caissiers
-					</a></li>
+					</a></li> -->
 					<li><a class="" href="{{ url('clients')}}">
 						<span class="fa fa-users">&nbsp;</span> Clients
 					</a></li>
@@ -84,12 +84,12 @@
 					<li><a class="" href="{{ url('factures')}}">
 						<span class="fa fa-bell">&nbsp;</span> Factures
 					</a></li>
-					<li><a class="" href="{{ url('detaillefactures')}}">
+					<!-- <li><a class="" href="{{ url('detaillefactures')}}">
 						<span class="fa fa-bar-chart">&nbsp;</span> Detaillefactures
 					</a></li>
 					<li><a class="" href="{{ url('users')}}">
 						<span class="fa fa-bar-chart">&nbsp;</span> utilisateur
-					</a></li>
+					</a></li> -->
 					<!-- <li><a class="" href="{{ url('users')}}">
 						<span class="fa fa-user">&nbsp;</span> utilisateur 
 						
