@@ -60,13 +60,14 @@ class ProductsController extends Controller
         return view('products.show',compact('product_detailleachats'));
     }
 
-    public function show1($id)
-    {
-        $product_detailleachats =App\Product::with('detailleachats')->GroupBy('$id')->sum('quantite');
-    }
+    // public function show1($id)
+    // {
+    //     $product_detailleachats = Product::with('detailleachats')
+    //     ->GroupBy('$id')->sum('quantite');
+    // }
     public function edit(Product $product)
     {
-        //
+     
         $categories = Category::all();
         $product = Product::find($product->id);
         return view('products/edit',[
@@ -96,7 +97,7 @@ class ProductsController extends Controller
     
     public function destroy(Product $product)
     {
-        //
+        
         $product = Product::find($product->id);
         $product->delete();
 
