@@ -85,8 +85,11 @@
 					<li><a class="" href="{{ url('detaillefactures')}}">
 						<span class="fa fa-bar-chart">&nbsp;</span> Detaillefactures
 					</a></li>
+<<<<<<< HEAD
 					</ul>
 			</li>
+=======
+>>>>>>> detaillefactures
 					<!-- <li><a class="" href="{{ url('users')}}">
 						<span class="fa fa-bar-chart">&nbsp;</span> utilisateur
 					</a></li> -->
@@ -100,7 +103,12 @@
 						<span class="fa fa-bar-chart">&nbsp;</span> utilisateur
 					</a></li>
 					@endif -->
+<<<<<<< HEAD
 				
+=======
+					</ul>
+			</li>
+>>>>>>> detaillefactures
 			<!-- <li  class="active" ><a data-toggle="collapse" href="#sub-item-2">
 				<em class="fa fa-cog">&nbsp;</em> Statistics<span data-toggle="collapse" href="#sub-item-2" class="icon pull-right"><em class="fa fa-plus"></em></span>
 				</a>
@@ -120,8 +128,13 @@
 						<span class="fa fa-bar-chart">&nbsp;</span> utilisateur
 					</a></li>
 					@endif -->
+<<<<<<< HEAD
 			<!-- </li>  -->
 		
+=======
+			<!-- </li>
+		 --> 
+>>>>>>> detaillefactures
 		
 	
 		
